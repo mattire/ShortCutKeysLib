@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+	
+	<PackageId>ShortCutKeysLib</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Matti Reijonen</Authors>
+    <Company>Unemployed</Company>
+    <Description>Reusable library for WPF shortcuts</Description>
+    
+	<!-- <RepositoryUrl>https://github.com/MyCompany/MyCompany.MyLibrary</RepositoryUrl> -->
+	<RepositoryUrl>https://github.com/mattire/ShortCutKeysLib</RepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	
+	<Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
