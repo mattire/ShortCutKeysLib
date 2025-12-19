@@ -5,6 +5,8 @@ Allows user to configure shortcut keys defined in the application.
 
 ![Keys configuration UI](https://github.com/mattire/ShortCutKeysLib/raw/main/images/KeysConfSamplePic.png)
 
+[Demo](https://youtu.be/dYdjHuFCk9Q)
+
 Defining default shortcuts:
 
 >        public ShortCutKeysLib.KeySequenceMngr ShortCutKeysMngr = new ShortCutKeysLib.KeySequenceMngr(
