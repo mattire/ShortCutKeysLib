@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static ShortCutKeysLib.KeySequenceMngr;
-using KeyCombSeq = ShortCutKeysLib.KeySequenceMngr.KeyCombSequence;
+using KeyCombSeq = ShortCutKeysLib.KeyCombSequence;
 
 namespace ShortCutKeysLib
 {
