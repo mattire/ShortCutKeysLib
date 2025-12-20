@@ -62,19 +62,34 @@ namespace ShortCutKeysLib
                 
         }
 
-        public KeyCombSequence(string name, string desc, Action<KeyEventArgs, object> action, string sender, params (Key, ModifierKeys)[] keysAndMods)
+        public KeyCombSequence(string name, string desc, Action<KeyEventArgs, object> action, object? sender, params Key[] controlKeys)
         {
-            Name = name;
-            Desc = desc;
-            KeyCombs = new List<KeyComb>();
+            InitCommon(name, desc, action, sender);
+            foreach (var key in controlKeys)
+            {
+                KeyCombs.Add(new KeyComb() { Key = key, Mods = ModifierKeys.Control });
+            }
+        }
+
+        public KeyCombSequence(string name, string desc, Action<KeyEventArgs, object> action, object? sender, params (Key, ModifierKeys)[] keysAndMods)
+        {
+            InitCommon(name, desc, action, sender);
             foreach (var (key, mods) in keysAndMods)
             {
                 KeyCombs.Add(new KeyComb() { Key = key, Mods = mods });
             }
+        }
+
+        private void InitCommon(string name, string desc, Action<KeyEventArgs, object> action, object? sender) {
+            Name = name;
+            Desc = desc;
+            KeyCombs = new List<KeyComb>();
             Action = action;
             Sender = sender;
             LstPressedTimes = Enumerable.Repeat<DateTime?>(null, KeyCombs.Count).ToList();
         }
+
+
 
         public KeyCombSequence(string name, string desc, List<KeyComb> keyCombs, Action<KeyEventArgs, object> action, object? sender = null)
         {
@@ -87,15 +102,15 @@ namespace ShortCutKeysLib
             LstPressedTimes = Enumerable.Repeat<DateTime?>(null, keyCombs.Count).ToList();
         }
 
-        public string Name { get; }
-        public string Desc { get; }
-        public List<KeyComb> KeyCombs { get; set; }
+        public string? Name { get; private set; }
+        public string? Desc { get; private set; }
+        public List<KeyComb>? KeyCombs { get; set; }
 
         [JsonIgnore]
-        public List<DateTime?> LstPressedTimes { get; set; } = new List<DateTime?>();
+        public List<DateTime?>? LstPressedTimes { get; set; } = new List<DateTime?>();
 
         [JsonIgnore]
-        public Action<KeyEventArgs, object> Action { get; set; }
+        public Action<KeyEventArgs, object>? Action { get; set; }
 
         public bool CheckKeyComb(KeyEventArgs e, object? sender = null)
         {
