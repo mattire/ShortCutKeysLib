@@ -57,9 +57,24 @@ namespace ShortCutKeysLib
         [JsonIgnore]
         public object? Sender { get; set; }
 
-        //public KeyCombSequence()
-        //{
-        //}
+        public KeyCombSequence()
+        {
+                
+        }
+
+        public KeyCombSequence(string name, string desc, Action<KeyEventArgs, object> action, string sender, params (Key, ModifierKeys)[] keysAndMods)
+        {
+            Name = name;
+            Desc = desc;
+            KeyCombs = new List<KeyComb>();
+            foreach (var (key, mods) in keysAndMods)
+            {
+                KeyCombs.Add(new KeyComb() { Key = key, Mods = mods });
+            }
+            Action = action;
+            Sender = sender;
+            LstPressedTimes = Enumerable.Repeat<DateTime?>(null, KeyCombs.Count).ToList();
+        }
 
         public KeyCombSequence(string name, string desc, List<KeyComb> keyCombs, Action<KeyEventArgs, object> action, object? sender = null)
         {
@@ -225,6 +240,7 @@ namespace ShortCutKeysLib
             StateManager = new KeySeqStateManager(confFileName != null ? confFileName : DEFAULT_STATE_FILE_NAME);
             StateManager.LoadState(this);
         }
+
 
         ~KeySequenceMngr()
         {
