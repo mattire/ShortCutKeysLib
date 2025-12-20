@@ -239,7 +239,7 @@ namespace ShortCutKeysLib
 
         public KeySequenceMngr(List<KeyCombSequence> keyCombSeqs, string confFileName)
         {
-            KeyCombSequences = keyCombSeqs;
+            KeyCombSequences = keyCombSeqs != null ? keyCombSeqs : new List<KeyCombSequence>();
             StateManager = new KeySeqStateManager(confFileName != null ? confFileName : DEFAULT_STATE_FILE_NAME);
             StateManager.LoadState(this);
         }
