@@ -9,6 +9,24 @@ Demo [https://youtu.be/dYdjHuFCk9Q](https://youtu.be/dYdjHuFCk9Q)
 
 Defining default shortcuts:
 
+New syntax (no nuget pkg yet):
+
+>       public ShortCutKeysLib.KeySequenceMngr ShortCutKeysMngr = new ShortCutKeysLib.KeySequenceMngr(
+>           keyCombSeqs: new List<ShortCutKeysLib.KeyCombSequence>()
+>           {
+>               new ("OpenGoogleSearchLink", "Opens Google search link for the selected stock symbol.", // name and description
+>			(e,s) => { OpenLink(GoogleSearchLink); }, // action
+>			MW.SearchBox, // UI element where shortcut key is active, if null, active everywhere around the window
+>			Key.G, Key.D2), // keys interpreted as control keys: ctrl + G, ctrl + 2
+>			
+>			new ("Open.TradingView.Nasdaq"   , NoDesc, 
+>			(e, s) => { OpenLink(TradingViewNasdaqLink); e.Handled = true; },
+>			null, 
+>			(Key.T, ModifierKeys.Control), (Key.T, ModifierKeys.Control | ModifierKeys.Shift)), // pairs describing keys and their modifier keys
+>		)
+
+Old syntax (version 1.0.0):
+
 >        public ShortCutKeysLib.KeySequenceMngr ShortCutKeysMngr = new ShortCutKeysLib.KeySequenceMngr(
 >            controlKeyShortCuts: new List<(List<Key> keys, Action<KeyEventArgs, object> act, object? sender, string name, string desc)>()
 >            {
@@ -39,5 +57,14 @@ Hooking up keypresses to shortcut handler:
 
 When the user changes the shortcuts, they are stored into mainWindowShorts.json in the above example. 
 It is possible to tie the shortcut to specific UI element. In the above example shortcuts apply to keypress in the MW.SearchBox UI object.
+
+Showing shortcuts editing window to user:
+
+>       private void Test_Click(object sender, RoutedEventArgs e)
+>       {   
+>           new ShortCutKeysLib.KeysConfWindow(ShortCutKeysMngr).Show();
+>       }
+
+
 
 Source codes of example app will be added some day.
