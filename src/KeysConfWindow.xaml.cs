@@ -127,6 +127,7 @@ namespace ShortCutKeysLib
             //KeySequenceMngr.StateManager = new KeySeqStateManager(KeySequenceMngr.DEFAULT_STATE_FILE_NAME);
             //KeySequenceMngr?.StateManager.LoadState(KeySequenceMngr);
             InitListBox();
+            SearchBox.Focus();
         }
 
 
@@ -186,9 +187,11 @@ namespace ShortCutKeysLib
                 //== "AssignBtn"
             }
             if (e is KeyEventArgs kea) {
-                if (kea.Key == Key.Escape) { this.Close(); }
+                if (kea.Key == Key.Escape) { e.Handled = true; this.Close(); }
             }
         }
+
+        
 
         private void HandleAssignEvent(object s, EventArgs e)
         {
