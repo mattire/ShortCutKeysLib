@@ -9,7 +9,7 @@ Demo [https://youtu.be/dYdjHuFCk9Q](https://youtu.be/dYdjHuFCk9Q)
 
 Defining default shortcuts:
 
-New syntax (no nuget pkg yet):
+New syntax (version 1.0.1):
 
 >       public ShortCutKeysLib.KeySequenceMngr ShortCutKeysMngr = new ShortCutKeysLib.KeySequenceMngr(
 >           keyCombSeqs: new List<ShortCutKeysLib.KeyCombSequence>()
@@ -25,7 +25,7 @@ New syntax (no nuget pkg yet):
 >			(Key.T, ModifierKeys.Control), (Key.T, ModifierKeys.Control | ModifierKeys.Shift)), // pairs describing keys and their modifier keys
 >		)
 
-Old syntax (version 1.0.0):
+Old outdated syntax (version 1.0.0):
 
 >        public ShortCutKeysLib.KeySequenceMngr ShortCutKeysMngr = new ShortCutKeysLib.KeySequenceMngr(
 >            controlKeyShortCuts: new List<(List<Key> keys, Action<KeyEventArgs, object> act, object? sender, string name, string desc)>()
