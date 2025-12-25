@@ -26,12 +26,13 @@ namespace ShortCutKeysLib
 
             if (!File.Exists(loadPath)) { return; }
             var txt = File.ReadAllText(loadPath);
+
             List<KeyCombSeq>? deser = JsonSerializer.Deserialize<List<KeyCombSeq>>(txt);
             if (deser != null)
             {
                 foreach (var kcs in keySequenceMngr.KeyCombSequences)
                 {
-                    var deserKcs = deser.FirstOrDefault(d => d.Name == kcs.Name);
+                    var deserKcs = deser.FirstOrDefault(d => d.Name != null && d.Name.Equals(kcs.Name, StringComparison.InvariantCultureIgnoreCase));
                     if (deserKcs != null)
                     { kcs.KeyCombs = deserKcs.KeyCombs; }
                 }

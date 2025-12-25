@@ -101,9 +101,10 @@ namespace ShortCutKeysLib
             //LstPressedTimes = new List<DateTime>(new DateTime[keyCombs.Count]);
             LstPressedTimes = Enumerable.Repeat<DateTime?>(null, keyCombs.Count).ToList();
         }
-
-        public string? Name { get; private set; }
-        public string? Desc { get; private set; }
+        //[JsonProperty("name")]
+        [JsonPropertyName("Name")]
+        public string? Name { get; set; }
+        public string? Desc { get;  set; }
         public List<KeyComb>? KeyCombs { get; set; }
 
         [JsonIgnore]
