@@ -124,7 +124,6 @@
                     KeyUp="ShortcutBox_KeyUp"
                     Text="Press shortcut..."
                     FontSize="16"
-                    
                     />
                 <Button x:Name="ClearBtn"   Content="Clear"      Click="ClearKey_Click"  Margin="10" Padding="5" Grid.Column="1" />
                 <Button x:Name="AssignBtn"  Content="Assign Key" Click="AssignKey_Click" Margin="10" Padding="5" Grid.Column="2" />

@@ -195,7 +195,7 @@ namespace ShortCutKeysLib
 
         private void HandleAssignEvent(object s, EventArgs e)
         {
-            if (KeysConfWndwViewModel.SelectedShortcut == null) {
+        if (KeysConfWndwViewModel.SelectedShortcut == null) {
                 MessageBox.Show("Select shortcut you want to assign new shortcut.");
                 return;
             }
@@ -203,7 +203,13 @@ namespace ShortCutKeysLib
                 MessageBox.Show("Select shortcut keys you want to assign for the shortcut.");
                 return;
             }
-            KeysConfWndwViewModel.SelectedShortcut.KeyCombs  = EnteredKeyComb;
+            var copy = new List<KeyComb>();
+            foreach (var item in EnteredKeyComb)
+            {
+                copy.Add((KeyComb)item.Clone());
+            }
+            //KeysConfWndwViewModel.SelectedShortcut.KeyCombs  = EnteredKeyComb;
+            KeysConfWndwViewModel.SelectedShortcut.KeyCombs = copy;
         }
 
         private void InitListBox()

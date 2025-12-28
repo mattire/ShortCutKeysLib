@@ -9,7 +9,7 @@ using static ShortCutKeysLib.KeySequenceMngr;
 
 namespace ShortCutKeysLib
 {
-    public class KeyComb
+    public class KeyComb : ICloneable
     {
         public Key Key { get; set; }
         //public List<ModifierKeys>? Mods { get; set; }
@@ -30,6 +30,7 @@ namespace ShortCutKeysLib
         //internal bool Check(Key key, List<ModifierKeys> mods)
         internal bool Check(Key key, ModifierKeys mods)
         {
+            //System.Diagnostics.Debug.WriteLine($"Comparing {Key} to {key}");
             if (Key != key) { return false; }
 
             return Mods == mods;
@@ -38,6 +39,16 @@ namespace ShortCutKeysLib
         internal bool IsEqual(KeyComb kc)
         {
             return kc.Key == Key && kc.Mods == Mods;
+        }
+
+        public object Clone()
+        {
+            var newKc = new KeyComb()
+            {
+                Key = this.Key,
+                Mods = this.Mods,
+            };
+            return newKc;
         }
     }
 
