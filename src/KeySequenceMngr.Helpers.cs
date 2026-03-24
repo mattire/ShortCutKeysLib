@@ -63,5 +63,10 @@ namespace ShortCutKeysLib
         {
             StateManager.LoadState(this, filename);
         }
+
+        public void ShowShortCuts()
+        {
+            new KeysConfWindow(this).Show();
+        }
     }
 }

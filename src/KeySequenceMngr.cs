@@ -11,10 +11,18 @@ namespace ShortCutKeysLib
 {
     public class KeyComb : ICloneable
     {
+        private ModifierKeys mods = ModifierKeys.None;
+
         public Key Key { get; set; }
         //public List<ModifierKeys>? Mods { get; set; }
-        public ModifierKeys Mods { get; set; } = ModifierKeys.None;
-
+        public ModifierKeys Mods
+        {
+            get => mods;
+            set
+            {
+                mods = value;
+            }
+        }
         [JsonIgnore]
         public DateTime? LastPressedTime { get; set; }
         public bool PressedRecently()
@@ -331,10 +339,6 @@ namespace ShortCutKeysLib
                     break;
                 }
             }
-        }
-
-        public void ShowShortCuts() { 
-            
         }
     }
 }
