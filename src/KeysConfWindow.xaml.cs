@@ -195,7 +195,7 @@ namespace ShortCutKeysLib
 
         private void HandleAssignEvent(object s, EventArgs e)
         {
-        if (KeysConfWndwViewModel.SelectedShortcut == null) {
+            if (KeysConfWndwViewModel.SelectedShortcut == null) {
                 MessageBox.Show("Select shortcut you want to assign new shortcut.");
                 return;
             }
@@ -290,7 +290,7 @@ namespace ShortCutKeysLib
 
         private void AssignKey_Click(object sender, RoutedEventArgs e)
         {
-
+            HandleAssignEvent(sender, e);
         }
 
         public List<KeyComb> EnteredKeyComb { get; set; }
